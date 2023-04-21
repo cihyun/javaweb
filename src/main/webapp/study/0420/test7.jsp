@@ -18,7 +18,7 @@
   		function inputBox() {
   			idx++;
   			newText = '<div id="proTxt'+idx+'">';
-  			newText += '<table class="table" width="100%">';
+  			newText += '<table class="table table-striped" width="100%">';
   			newText += '<tr>';
   			newText += '<td><input type="text" name="product" id="product'+idx+'" /></td>';
   			newText += '<td><input type="number" name="price" id="price'+idx+'" /></td>';
