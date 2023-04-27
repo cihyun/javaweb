@@ -19,20 +19,21 @@ public class LoginOK extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mid = request.getParameter("mid")== null ? "" : request.getParameter("mid");
 		String pwd = request.getParameter("pwd")== null ? "" : request.getParameter("pwd");
-		String rememberId = request.getParameter("rememberId");
+		String rememberId = request.getParameter("rememberId")==null ? "off" : "on";
 		
 		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		
 		if(mid.equals("admin") && pwd.equals("1234") || (mid.equals("hci89") && pwd.equals("1234"))) {
 			session.setAttribute("sMid", mid);
+			
 			Cookie cookieMid = new Cookie("cMid", mid);
 			cookieMid.setPath("/");		// 웹 어플리케애션의 '전체(요청)경로'에서 사용(포함)하고자 할때는 '/'로 지정한다.
 			if(rememberId.equals("on")) {
 				cookieMid.setMaxAge(60*60*24*7); 	// 쿠키의 만료시간을 7일로 설정
 			}
 			else {
-				cookieMid.setMaxAge(0); 	// 쿠키의 만료시간을 7일로 설정
+				cookieMid.setMaxAge(0); 	
 			}
 			response.addCookie(cookieMid);
 			

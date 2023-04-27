@@ -28,7 +28,7 @@
                 </div>
 
                 <label class="mb-3">
-                    <input type="checkbox" name="rememberId" /> 아이디저장
+                    <input type="checkbox" name="rememberId" checked/> 아이디저장
                 </label>
 
                 <div class="mb-3 text-center">
