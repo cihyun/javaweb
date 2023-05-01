@@ -1,0 +1,22 @@
+package study2.mapping2;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class TestDanCommand implements Test5miInterface {
+
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int dan = request.getParameter("dan")==null ? 0 : Integer.parseInt(request.getParameter("dan"));
+		String str = "["+dan+"] 단<br />";
+		
+		for(int i=0; i<=9; i++) {
+			str += dan+" * "+i+" = "+(dan*i)+"<br />";
+		}
+		request.setAttribute("str", str);
+	}
+
+}

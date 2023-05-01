@@ -20,9 +20,11 @@
 				      STUDY1
 				    </button>
 				    <div class="dropdown-menu">
-				      <a class="dropdown-item" href="${ctp}/study/0428_database/login.jsp">로그인연습</a>
-				      <a class="dropdown-item" href="#">Link2</a>
-				      <a class="dropdown-item" href="#">Link3</a>
+				      <a class="dropdown-item" href="${ctp}/study/0428_database/login.jsp">로그인연습1</a>
+				      <a class="dropdown-item" href="${ctp}/mapping/Test1">URL매핑(디렉토리패턴)</a>
+				      <a class="dropdown-item" href="${ctp}/mapping/Test5.do">URL매핑(확장자패턴1)</a>
+				      <a class="dropdown-item" href="${ctp}/mapping2/Test5.mi">URL매핑(확장자패턴2)</a>
+				      <a class="dropdown-item" href="${ctp}/study/0428_database/Login.re">로그인연습2</a>
 				    </div>
 				</div>
 			</li>
@@ -32,7 +34,7 @@
 				      STUDY2
 				    </button>
 				    <div class="dropdown-menu">
-				      <a class="dropdown-item" href="#">URL매핑</a>
+				      <a class="dropdown-item" href="${ctp}/mapping/Test1">URL매핑</a>
 				      <a class="dropdown-item" href="#">Link2</a>
 				      <a class="dropdown-item" href="#">Link3</a>
 				    </div>
