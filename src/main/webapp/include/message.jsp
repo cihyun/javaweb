@@ -11,16 +11,10 @@
 	'use strict';
 	if("${msg}" != "NO") alert("${msg}");
 	
-	alert("${msg}");
+	// alert("${msg}");
 	location.href= '${url}';
 </script>
 </head>
 <body>
-<jsp:include page="/include/header.jsp" />
-<div class="container mt-5">
-	<h3></h3>
-		
-</div>
-<jsp:include page="/include/footer.jsp" />
 </body>
 </html>
