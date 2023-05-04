@@ -41,9 +41,10 @@ public class JoinOk extends HttpServlet {
 			// 아이디가 중복되어 있지 않기에 DB에 정보를 저장시킨다.
 			dao.setJoinOk(vo);
 			out.print("<script>");
-			out.print("alert('회원가입이 완료되었습니다.');");
+			out.print("alert('회원에 가입되셨습니다.');");
 			out.print("location.href='"+request.getContextPath()+"/study/0428_database/login.jsp';");
 			out.print("</script>");
+			//out.print("회원가입완료!!");
 		}
 	}
 }

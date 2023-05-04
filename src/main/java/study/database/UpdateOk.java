@@ -17,7 +17,7 @@ public class UpdateOk extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		String mid = (String)session.getAttribute("sMid");
+		String mid = (String) session.getAttribute("sMid");
 		String pwd = request.getParameter("pwd")==null ? "" : request.getParameter("pwd");
 		String name = request.getParameter("name")==null ? "" : request.getParameter("name");
 		
@@ -32,16 +32,17 @@ public class UpdateOk extends HttpServlet {
 		int res = dao.setUpdateOk(vo);
 		
 		PrintWriter out = response.getWriter();
-
+		
 		if(res == 1) {
-			session.setAttribute("sName",name);
+			session.setAttribute("sName", name);
 			out.print("<script>");
 			out.print("alert('개인정보가 수정되었습니다.');");
 			out.print("location.href='"+request.getContextPath()+"/study/0428_database/memberMain.jsp';");
 			out.print("</script>");
-		} else {
+		}
+		else {
 			out.print("<script>");
-			out.print("alert('회원정보 수정 실패!');");
+			out.print("alert('회원정보 수정 실패~~~');");
 			out.print("location.href='"+request.getContextPath()+"/database/Update';");
 			out.print("</script>");
 		}

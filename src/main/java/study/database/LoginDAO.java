@@ -196,6 +196,7 @@ public class LoginDAO {
 		
 		return todayCount;
 	}
+
 	// 개인정보 수정하기
 	public int setUpdateOk(LoginVO vo) {
 		int res = 0;
@@ -214,7 +215,8 @@ public class LoginDAO {
 		}
 		return res;
 	}
-	// 회원 탈퇴
+
+	// 회원 탈퇴처리
 	public int setDeleteOk(String mid) {
 		int res = 0;
 		try {
@@ -230,5 +232,5 @@ public class LoginDAO {
 		}
 		return res;
 	}
-	
+
 }

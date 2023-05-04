@@ -15,7 +15,6 @@ import study2.mapping.Test5Service;
 //@WebServlet("/mapping/Test5.do")
 @WebServlet("*.mi")
 public class Test5miController extends HttpServlet {
-	@SuppressWarnings("unused")
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/* frontController */

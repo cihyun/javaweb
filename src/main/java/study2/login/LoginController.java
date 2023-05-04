@@ -18,7 +18,7 @@ public class LoginController extends HttpServlet {
 		String viewPage = "/WEB-INF/study2/login";
 		
 		String com = request.getRequestURI();
-		com = com.substring(com.lastIndexOf("/"),com.lastIndexOf("."));
+		com = com.substring(com.lastIndexOf("/"), com.lastIndexOf("."));
 		
 		if(com.equals("/Login")) {
 			viewPage += "/login.jsp";
