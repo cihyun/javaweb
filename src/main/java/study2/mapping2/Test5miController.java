@@ -12,20 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import study2.mapping.Test5Service;
 
 @SuppressWarnings("serial")
-//@WebServlet("/mapping/Test5.do")
 @WebServlet("*.mi")
 public class Test5miController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* frontController */
 		Test5miInterface command = null;
 		String viewPage = "/WEB-INF/study2/mapping2";
-
-		// 경로 가져옴
-		String uri = request.getRequestURI();
 		
-		// 확장자 
-		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
+		String uri = request.getRequestURI();
+		String com = uri.substring(uri.lastIndexOf("/"), uri.lastIndexOf("."));
+		
 		
 		if(com.equals("/Test5")) {
 			viewPage += "/test5.jsp";
@@ -34,11 +30,10 @@ public class Test5miController extends HttpServlet {
 			viewPage += "/test5_2.jsp";
 		}
 		else if(com.equals("/Test5_3")) {
-			command = new TestDanCommand();
+			command = new Test5DanCommand();
 			command.execute(request, response);
 			viewPage += "/test5_3.jsp";
 		}
-		// 메세지 처리 하는 애
 		else if(com.equals("/Test5_4")) {
 			command = new Test5MsgCommand();
 			command.execute(request, response);

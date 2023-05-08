@@ -7,16 +7,14 @@
 	String gender = request.getParameter("gender");
 	
 	String[] hobbys = request.getParameterValues("hobby");
-  	String str = "";
-  	for(String hobby : hobbys) str += hobby + "/";
-  	str = str.substring(0, str.length()-1);
-  	
-  	// 저장소에 저장 !
-  	/* pageContext.setAttribute(name, value); */
-  	pageContext.setAttribute("name", name);
-  	pageContext.setAttribute("age", age);
-  	pageContext.setAttribute("gender", gender);
-  	pageContext.setAttribute("str", str);
+  String str = "";
+  for(String hobby : hobbys) str += hobby + "/";
+  str = str.substring(0, str.length()-1);
+  
+  pageContext.setAttribute("name", name);		// (저장소이름, 값)
+  pageContext.setAttribute("age", age);
+  pageContext.setAttribute("gender", gender);
+  pageContext.setAttribute("str", str);
 %>
 <!DOCTYPE html>
 <html>

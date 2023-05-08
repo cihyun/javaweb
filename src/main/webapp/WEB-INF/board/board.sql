@@ -2,17 +2,17 @@ show tables;
 
 create table board (
 	idx   int not null auto_increment,	/* 게시글의 고유번호 */
-	mid      varchar(20) not null,					/* 게시글 올린이 아이디 */
-	nickName varchar(20) not null,			/* 게시글 올린이 닉네임 */
-	title   varchar(100) not null,				/* 게시글 제목 */
-	email		varchar(50),							/* 이메일 주소 */
-	homePage varchar(50),							/* 홈페이지(개인블로그) 주소 */
-	content text not null,						/* 게시글 내용 */
-	readNum int default 0,						/* 글 조회수 */
-	hostIp  varchar(40) not null,			/* 글 올린이의 IP */
-	openSw  char(2)	default 'OK',			/* 게시글 공개여부(OK:공개,NO:비공개) */
-	wDate   datetime  default now(),		/* 글 올린 날짜/시간 */
-	good		int default 0,						/* '좋아요' 클릭 횟수 누적 */
+	mid      varchar(20) not null,		/* 게시글 올린이 아이디 */
+	nickName varchar(20) not null,		/* 게시글 올린이 닉네임 */
+	title   varchar(100) not null,		/* 게시글 제목 */
+	email		varchar(50),			/* 이메일 주소 */
+	homePage varchar(50),				/* 홈페이지(개인블로그) 주소 */
+	content text not null,				/* 게시글 내용 */
+	readNum int default 0,				/* 글 조회수 */
+	hostIp  varchar(40) not null,		/* 글 올린이의 IP */
+	openSw  char(2)	default 'OK',		/* 게시글 공개여부(OK:공개,NO:비공개) */
+	wDate   datetime  default now(),	/* 글 올린 날짜/시간 */
+	good		int default 0,			/* '좋아요' 클릭 횟수 누적 */
 	primary key(idx)
 );
 
@@ -66,10 +66,11 @@ select timestampdiff(hour, now(), '2023-05-04');
 select timestampdiff(hour, '2023-05-04', now());
 select timestampdiff(hour, wDate, now()) from board;
 select timestampdiff(hour, wDate, now()) as hour_diff from board;
-select *,timestampdiff(hour, wDate, now()) as hour_diff from board;
+select *,timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc;
 select *,timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,5;
-select *,datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,5;
+select *,datediff(wDate, now()) as day_diff,timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,5;
 
 /* 날짜양식(date_format()) : 4자리년도(%Y), 월(%m), 일(%d) */
 select wDate, date_format(wDate, '%Y-%m-%d %H:%i') from board;
 select *,date_format(wDate, '%Y-%m-%d'),date_format(wDate, '%H:%i'),timestampdiff(hour, wDate, now()) as hour_diff from board;
+select *,date_format(wDate, '%Y-%m-%d') as day_format, date_format(wDate, '%H:%i') as hour_format, timestampdiff(hour, wDate, now()) as hour_diff from board;

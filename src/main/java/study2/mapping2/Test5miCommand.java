@@ -10,8 +10,8 @@ public class Test5miCommand implements Test5miInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int su1 = request.getParameter("su1")==null ? 0 : Integer.parseInt(request.getParameter("su1"));
-		int su2 = request.getParameter("su1")==null ? 0 : Integer.parseInt(request.getParameter("su2"));
+		int su1 = request.getParameter("su1")==null ? 1 : Integer.parseInt(request.getParameter("su1"));
+		int su2 = request.getParameter("su2")==null ? 1 : Integer.parseInt(request.getParameter("su2"));
 		String op = request.getParameter("op")==null ? "+" : request.getParameter("op");
 		
 		int res = 0;
@@ -22,10 +22,10 @@ public class Test5miCommand implements Test5miInterface {
 		else if(op.equals("/")) res = su1 / su2;
 		else res = su1 % su2;
 		
-		request.setAttribute("su1",	su1);
-		request.setAttribute("su2",	su2);
-		request.setAttribute("op",	op);
-		request.setAttribute("res",	res);
+		request.setAttribute("su1", su1);
+		request.setAttribute("su2", su2);
+		request.setAttribute("op", op);
+		request.setAttribute("res", res);
 	}
 
 }

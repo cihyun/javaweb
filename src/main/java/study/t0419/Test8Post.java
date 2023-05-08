@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 @WebServlet({"/t8Post","/t8p"})
-
 public class Test8Post extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,6 +27,7 @@ public class Test8Post extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.print("성명 : " + name + "<br/>");
 		out.print("나이 : " + age + "<br/>");
+		// out.print("<a href='/javaweb/study/0419/test8.jsp'>돌아가기</a>");
 		out.print("<a href='"+request.getContextPath()+"/study/0419/test8.jsp'>돌아가기</a>");
 	}
 }

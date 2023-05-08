@@ -7,15 +7,15 @@
 	String gender = request.getParameter("gender");
 	
 	String[] hobbys = request.getParameterValues("hobby");
-  	String str = "";
-  	for(String hobby : hobbys) str += hobby + "/";
-  	str = str.substring(0, str.length()-1);
+  String str = "";
+  for(String hobby : hobbys) str += hobby + "/";
+  str = str.substring(0, str.length()-1);
 %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>test3Ok.jsp</title>
+  <title>test3Ok2.jsp</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>

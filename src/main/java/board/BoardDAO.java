@@ -24,7 +24,7 @@ public class BoardDAO {
 		ArrayList<BoardVO> vos = new ArrayList<>();
 		try {
 			// sql = "select * from board order by idx desc limit ?,?";
-			sql = "select *,datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from"
+			sql = "select *,datediff(wDate, now()) as day_diff,timestampdiff(hour, wDate, now()) as hour_diff from"
 					+ " board order by idx desc limit ?,?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
@@ -98,6 +98,64 @@ public class BoardDAO {
 			getConn.rsClose();
 		}
 		return totRecCnt;
+	}
+	// 게시글 1건 가져오기
+	public BoardVO getBoardContent(int idx) {
+		BoardVO vo = new BoardVO();
+		try {
+			sql = "select * from board where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			rs = pstmt.executeQuery();
+			rs.next();
+			
+			vo.setIdx(rs.getInt("idx"));
+			vo.setMid(rs.getString("mid"));
+			vo.setNickName(rs.getString("nickName"));
+			vo.setTitle(rs.getString("title"));
+			vo.setEmail(rs.getString("email"));
+			vo.setHomePage(rs.getString("homePage"));
+			vo.setContent(rs.getString("content"));
+			vo.setReadNum(rs.getInt("readNum"));
+			vo.setHostIp(rs.getString("hostIp"));
+			vo.setOpenSw(rs.getString("openSw"));
+			vo.setwDate(rs.getString("wDate"));
+			vo.setGood(rs.getInt("good"));
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.rsClose();
+		}
+		return vo;
+	}
+	// 조회수 1회 카운트
+	public void setReadNumUpadate(int idx) {
+		try {
+			sql = "update board set readNum = readNum + 1 where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
+	}
+	
+	// 좋아요 1 증가 시키기
+	public void setGoodUpadate(int idx) {
+		try {
+			sql = "update board set good = good + 1 where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			getConn.pstmtClose();
+		}
+		
 	}
 	
 }

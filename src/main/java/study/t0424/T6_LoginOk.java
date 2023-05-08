@@ -20,10 +20,6 @@ public class T6_LoginOk extends HttpServlet {
 		String pwd = request.getParameter("pwd")==null ? "" : request.getParameter("pwd");
 		String idSave = request.getParameter("idSave")==null ? "off" : "on";
 		
-		System.out.println("mid : " + mid);
-//		System.out.println("idSave : " + idSave);
-//		String viewPage = "";
-		
 		HttpSession session = request.getSession();
 		
 		PrintWriter out = response.getWriter();
@@ -38,7 +34,7 @@ public class T6_LoginOk extends HttpServlet {
 				cookieMid.setMaxAge(60*60*24*7); 	// 쿠키의 만료시간을 7일로 설정
 			}
 			else {
-				cookieMid.setMaxAge(0); 	// 쿠키의 만료시간을 7일로 설정
+				cookieMid.setMaxAge(0); 	// 쿠키의 만료시간을 0일로 설정(쿠키제거)
 			}
 			response.addCookie(cookieMid);
 			
@@ -52,7 +48,7 @@ public class T6_LoginOk extends HttpServlet {
 		else {
 			out.print("<script>");
 			out.print("alert('아이디와 비밀번호를 확인하세요.');");
-			out.print("location.href='"+request.getContextPath()+"/study/0425_storage/t5_Login.jsp';");
+			out.print("location.href='"+request.getContextPath()+"/study/0425_storage/t6_Login.jsp';");
 			out.print("</script>");
 //			viewPage = "/study/0425_storage/t5_Login.jsp";
 //			request.getRequestDispatcher(viewPage).forward(request, response);

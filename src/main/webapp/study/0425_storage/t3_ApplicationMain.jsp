@@ -25,8 +25,8 @@
     </div>
     <hr/>
 	  <div class="row">
-	    <div class="col"><a href="t3_ApplicationSave.jsp" class="btn btn-success form-control">어플리케이션 저장1(get)</a></div>
-	    <div class="col"><button type="submit" class="btn btn-success form-control">어플리케이션 저장2(post)</button></div>
+	    <div class="col"><a href="t3_ApplicationSave.jsp" class="btn btn-success form-control">어플리케이션 저장(Get)</a></div>
+	    <div class="col"><button type="submit" class="btn btn-success form-control">어플리케이션 저장(Post)</button></div>
 	    <!-- <div class="col"><a href="t2_SessionCheck.jsp" class="btn btn-success form-control">세션 확인</a></div> -->
 	  </div>
   </form>

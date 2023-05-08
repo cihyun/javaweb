@@ -78,18 +78,17 @@ public class GuestDAO {
 		return vos;
 	}
 
-	// 방명록 쓰기
+	// 방명록에 글 올리기
 	public int setGuestInputOk(GuestVO vo) {
 		int res = 0;
 		try {
-			sql="insert into guest values (default,?,?,?,?,default,?)";
+			sql = "insert into guest values (default,?,?,?,?,default,?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getContent());
 			pstmt.setString(3, vo.getEmail());
 			pstmt.setString(4, vo.getHomePage());
 			pstmt.setString(5, vo.getHostIp());
-			
 			pstmt.executeUpdate();
 			res = 1;
 		} catch (SQLException e) {
@@ -99,7 +98,7 @@ public class GuestDAO {
 		}
 		return res;
 	}
-	
+
 	// 총 레코드 건수 구하기
 	public int getTotRecCnt() {
 		int totRecCnt = 0;
@@ -116,11 +115,12 @@ public class GuestDAO {
 		}
 		return totRecCnt;
 	}
-	// 방명록 자료 삭제처리
+
+	// 방명록의 자료 삭제처리
 	public int setGuestDelete(int idx) {
 		int res = 0;
 		try {
-			sql = "delete from guest where idx=?";
+			sql = "delete from guest where idx = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			pstmt.executeUpdate();

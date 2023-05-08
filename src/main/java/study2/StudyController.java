@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import study2.password.PassOk1Commond;
+import study2.password.PassOk2Commond;
+
 @SuppressWarnings("serial")
 @WebServlet("*.st")
 public class StudyController extends HttpServlet {
@@ -24,14 +27,22 @@ public class StudyController extends HttpServlet {
 			viewPage += "/password/password.jsp";
 		}
 		else if(com.equals("/PassOk1")){
-			command = new PassOk1Command();
+			command = new PassOk1Commond();
 			command.execute(request, response);
 			viewPage += "/password/password.jsp";
 		}
 		else if(com.equals("/PassOk2")){
-			command = new PassOk2Command();
+			command = new PassOk2Commond();
 			command.execute(request, response);
 			viewPage += "/password/password2.jsp";
+		}
+		else if(com.equals("/UuidForm")){
+			viewPage += "/uuid/uuidForm.jsp";
+		}
+		else if(com.equals("/Uuid")){
+			command = new UuidCommond();
+			command.execute(request, response);
+			viewPage += "/uuid/uuidOk.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

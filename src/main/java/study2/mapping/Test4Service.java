@@ -7,6 +7,7 @@ public class Test4Service {
 		this.su1 = su1;
 		this.su2 = su2;
 	}
+	
 	public int test4Calc() {
 		int res = su1 + su2;
 		return res;

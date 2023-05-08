@@ -1,7 +1,7 @@
 package study2.mapping;
 
 public class Test5Service {
-	
+
 	public int test5Calc(int su1, int su2, String op) {
 		int res = 0;
 		
@@ -13,4 +13,5 @@ public class Test5Service {
 		
 		return res;
 	}
+	
 }

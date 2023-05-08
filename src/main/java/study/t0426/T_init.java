@@ -29,4 +29,5 @@ public class T_init extends HttpServlet {
 		String viewPage = "/study/0426/t_initRes.jsp";
 		request.getRequestDispatcher(viewPage).forward(request, response);
 	}
+	
 }

@@ -12,7 +12,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>t5_member.jsp</title>
+  <title>t6_member.jsp</title>
   <jsp:include page="/include/bs4.jsp" />
 </head>
 <body>

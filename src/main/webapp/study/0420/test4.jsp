@@ -37,13 +37,13 @@
 <p><br/></p>
 <div class="container">
   <h2>값 전송 연습</h2>
-  <form name="myform" method="post" action="<%=request.getContextPath() %>/t0420/Test4Ok">
+  <form name="myform" method="post" action="<%=request.getContextPath()%>/t0420/Test4Ok">
     <div class="border">
       <div>
-        성명 : <input type="text" name="name" id="name" value="" class="form-control"/>
+        성명 : <input type="text" name="name" id="name" value="Hong Kil Dong" class="form-control"/>
       </div>
       <div>
-        나이 : <input type="number" name="age" id="age" value="" class="form-control"/>
+        나이 : <input type="number" name="age" id="age" value="25" class="form-control"/>
       </div>
       <div>
         성별 : <input type="radio" name="gender" value="남자" checked />남자 &nbsp;
@@ -51,11 +51,11 @@
       </div>
       <div>
         취미 :
-          <input type="checkbox" name="hobby" value="볼링" checked />볼링 &nbsp;
+          <input type="checkbox" name="hobby" value="등산" checked />등산 &nbsp;
           <input type="checkbox" name="hobby" value="낚시" />낚시 &nbsp;
           <input type="checkbox" name="hobby" value="독서" />독서 &nbsp;
           <input type="checkbox" name="hobby" value="수영" />수영 &nbsp;
-          <input type="checkbox" name="hobby" value="농구" />농구 &nbsp;
+          <input type="checkbox" name="hobby" value="바둑" />바둑 &nbsp;
           <input type="checkbox" name="hobby" value="음악감상" />음악감상 &nbsp;
           <input type="checkbox" name="hobby" value="영화감상" />영화감상
       </div>
@@ -64,7 +64,7 @@
       <input type="button" value="전송" onclick="fCheck()" class="btn btn-success mr-3"/>
       <input type="reset" value="다시입력" class="btn btn-warning"/>
     </div>
-    <input type="hidden" name="hostIp" value="<%=request.getRemoteAddr() %>"/>
+    <input type="hidden" name="hostIp" value="<%=request.getRemoteAddr()%>" />
   </form>
 </div>
 <p><br/></p>

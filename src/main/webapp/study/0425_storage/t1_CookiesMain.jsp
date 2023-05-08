@@ -9,7 +9,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-  <h2>쿠키 연습 메인 메뉴</h2>
+  <h2>쿠기 연습 메인 메뉴</h2>
   <hr/>
   <div class="row">
     <div class="col"><a href="t1_CookiesSave.jsp" class="btn btn-success form-control">쿠키 저장</a></div>

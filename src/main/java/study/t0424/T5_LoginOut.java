@@ -16,12 +16,14 @@ public class T5_LoginOut extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
 		String mid = (String) session.getAttribute("sMid");
+		
 		session.invalidate();
 		
 		PrintWriter out = response.getWriter();
 		out.print("<script>");
-		out.print("alert('"+mid+"로그아웃 되었습니다.');");
+		out.print("alert('"+mid+"님 로그아웃 되었습니다.');");
 		out.print("location.href='"+request.getContextPath()+"/study/0425_storage/t5_Login.jsp';");
 		out.print("</script>");
 	}

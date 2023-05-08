@@ -9,13 +9,10 @@ public class Test2VO {
 	private int soc;
 	private int sci;
 	private int tot;
-	private int avg;
-	private int grade;
+	private double avg;
+	private char grade;
 	
-	
-	public Test2VO(String name, String hakbun, int kor, int eng, int mat, int soc, int sci, int tot, int avg,
-			int grade) {
-		super();
+	public Test2VO(String name, String hakbun, int kor, int eng, int mat, int soc, int sci, int tot, double avg, char grade) {
 		this.name = name;
 		this.hakbun = hakbun;
 		this.kor = kor;
@@ -27,6 +24,7 @@ public class Test2VO {
 		this.avg = avg;
 		this.grade = grade;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -75,22 +73,21 @@ public class Test2VO {
 	public void setTot(int tot) {
 		this.tot = tot;
 	}
-	public int getAvg() {
+	public double getAvg() {
 		return avg;
 	}
-	public void setAvg(int avg) {
+	public void setAvg(double avg) {
 		this.avg = avg;
 	}
-	public int getGrade() {
+	public char getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(char grade) {
 		this.grade = grade;
 	}
-	
 	@Override
 	public String toString() {
-		return "Test2VO [name=" + name + ", hakbun=" + hakbun + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat
-				+ ", soc=" + soc + ", sci=" + sci + ", tot=" + tot + ", avg=" + avg + ", grade=" + grade + "]";
+		return "Test2VO [name=" + name + ", hakbun=" + hakbun + ", kor=" + kor + ", eng=" + eng + ", mat=" + mat + ", soc="
+				+ soc + ", sci=" + sci + ", tot=" + tot + ", avg=" + avg + ", grade=" + grade + "]";
 	}
 }

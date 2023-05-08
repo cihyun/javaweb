@@ -16,7 +16,7 @@ public class GuestController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GuestInterface command = null;
 		String viewPage = "/WEB-INF/guest";
-
+		
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
@@ -51,6 +51,7 @@ public class GuestController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}

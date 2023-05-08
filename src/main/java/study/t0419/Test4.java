@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/t4")
 public class Test4 extends HttpServlet {
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		PrintWriter out = response.getWriter();
-		out.println("Servlet Test.... /t4 ....");
+		
+		out.println("Servlet Test..../t4.....");
 	}
 }

@@ -17,25 +17,29 @@ public class Test1Ok extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-/*		
-		String mid = request.getParameter("mid");
-		String mid="";
+		/*
+		// String mid = request.getParameter("mid");
+		String mid = "";
 		if(request.getParameter("mid") == null) mid = "";
 		
 		String name = request.getParameter("name");
-		if(request.getParameter("mid").equals("admin")) {
-			System.out.println("관리자님이시군요!");
-		} else {
-			System.out.println("방문객이시군요!");
-		}
- */
-		String mid = request.getParameter("mid")== null ? "" : request.getParameter("mid");
-		String name = request.getParameter("name")== null ? "" : request.getParameter("name");
-		String job = request.getParameter("job")== null ? "" : request.getParameter("job");	
 		
-		System.out.println("아이디는 : " +mid);
-		System.out.println("이름은 : " +name);
-		System.out.println("직업은 : " +job);
+		// if(mid.equals("admin")) {
+		if(request.getParameter("mid").equals("admin")) {
+			System.out.println("관리자님이시군요..");
+		}
+		else {
+			System.out.println("방문객이시군요..");
+		}
+		*/
+		
+		String mid = request.getParameter("mid")==null ? "" : request.getParameter("mid");
+		String name = request.getParameter("name")==null ? "" : request.getParameter("name");
+		String job = request.getParameter("job")==null ? "" : request.getParameter("job");
+		
+		System.out.println("mid : " + mid);
+		System.out.println("name : " + name);
+		System.out.println("job : " + job);
 		
 		request.setAttribute("mid", mid);
 		request.setAttribute("name", name);

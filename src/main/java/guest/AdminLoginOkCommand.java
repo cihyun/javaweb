@@ -18,11 +18,13 @@ public class AdminLoginOkCommand implements GuestInterface {
 			HttpSession session = request.getSession();
 			session.setAttribute("sAdmin", "adminOk");
 			
-			request.setAttribute("msg", "관리자 인증 성공!");
+			request.setAttribute("msg", "관리자 인증 성공!!!");
 			request.setAttribute("url", request.getContextPath()+"/GuestList.gu");
-		} else {
-			request.setAttribute("msg", "관리자 인증 실패!!");
+		}
+		else {
+			request.setAttribute("msg", "관리자 인증 실패~~");
 			request.setAttribute("url", request.getContextPath()+"/AdminLogin.gu");
 		}
 	}
+
 }
