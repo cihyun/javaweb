@@ -34,6 +34,8 @@
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인연습2</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/Password.st">암호화연습</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/UuidForm.st">UUID연습</a>
+			      <a class="dropdown-item" href="${ctp}/AjaxTest1">aJax연습1</a>
+			      <a class="dropdown-item" href="${ctp}/UserList.st">aJax연습2</a>
 			    </div>
 			  </div>
 	      </li>   
@@ -69,3 +71,4 @@
     </ul>
   </div>
 </nav>
+<div class="mb-3"></div>

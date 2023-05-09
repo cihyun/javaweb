@@ -4,5 +4,5 @@
 	  <h1 style="margin:-15px">현채이 JAVAWEB 프로젝트</h1>
 	  <br/>
 	  <p>(본 프로젝트는 반응형으로 제작되었습니다.)</p>
-  </div> 
+  </div>
 </div>
