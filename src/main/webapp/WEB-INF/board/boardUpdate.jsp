@@ -34,7 +34,7 @@
 <p><br/></p>
 <div class="container">
   <h2 class="text-center">게시글 등록</h2>
-  <form name="myform" method="post" action="${ctp}/BoardInputOk.bo">
+  <form name="myform" method="post" action="${ctp}/BoardUpdateOk.bo">
     <table class="table table-bordered">
       <tr>
         <th>작성자</th>
@@ -42,36 +42,39 @@
       </tr>
       <tr>
         <th>제목</th>
-        <td><input type="text" name="title" id="title" placeholder="글제목을 입력하세요" autofocus required class="form-control"></td>
+        <td><input type="text" name="title" value="${vo.title}" id="title" autofocus required class="form-control"></td>
       </tr>
       <tr>
         <th>이메일</th>
-        <td><input type="text" name="email" id="email" placeholder="이메일을 입력하세요" class="form-control"/></td>
+        <td><input type="text" name="email" id="email" value="${vo.email}" class="form-control"/></td>
       </tr>
       <tr>
         <th>홈페이지</th>
-        <td><input type="text" name="homePage" id="homePage" value="https://" placeholder="홈페이지를 입력하세요" class="form-control"/></td>
+        <td><input type="text" name="homePage" id="homePage" value="${vo.homePage}" class="form-control"/></td>
       </tr>
       <tr>
         <th>내용</th>
-        <td><textarea rows="6" name="content" class="form-control" required></textarea></td>
+        <td><textarea rows="6" name="content" class="form-control" required>${vo.content}</textarea></td>
       </tr>
       <tr>
         <th>공개여부</th>
         <td>
-          <input type="radio" name="openSw" value="OK" checked />공개
-          <input type="radio" name="openSw" value="NO" class="ml-3"/>비공개
+          <input type="radio" name="openSw" value="OK" <c:if test="${vo.openSw == 'OK'}">checked</c:if> />공개
+          <input type="radio" name="openSw" value="NO" class="ml-3"<c:if test="${vo.openSw == 'NO'}">checked</c:if> />비공개
         </td>
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-          <input type="button" value="등록" onclick="fCheck()" class="btn btn-primary"/>
+          <input type="button" value="저장" onclick="fCheck()" class="btn btn-primary"/>
           <input type="reset" value="다시입력" class="btn btn-warning"/>
-          <input type="button" value="목록" onclick="location.href='${ctp}/BoardList.bo';" class="btn btn-secondary"/>
+          <input type="button" value="목록" onclick="location.href='${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
         </td>
       </tr>
     </table>
     <input type="hidden" name="hostIp" value="${pageContext.request.remoteAddr}"/>
+    <input type="hidden" name="idx" value="${vo.idx}"/>
+    <input type="hidden" name="pag" value="${pag}"/>
+    <input type="hidden" name="pageSize" value="${pageSize}"/>
   </form>
 </div>
 <p><br/></p>

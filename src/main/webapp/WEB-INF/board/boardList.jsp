@@ -16,16 +16,42 @@
     	let pageSize = document.getElementById("pageSize").value;
     	location.href = "${ctp}/BoardList.bo?pag=${pag}&pageSize="+pageSize;
     }
+    function searchCheck() {
+		let searchString = $("#searchString").val();
+    	
+    	if(searchString.trim() == "") {
+    		alert("찾고자하는 검색어를 입력하세요!");
+    		searchForm.searchString.focus();
+    	}
+    	else {
+    		searchForm.submit();
+    	}
+    }
   </script>
 </head>
 <body>
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">게 시 판 리 스 트</h2>
-  <table class="table table-borderless">
+  <h2 class="text-center mb-3">게시판리스트</h2>
+  <table class="table table-borderless mb-0">
+  	<tr>
+  		<td colspan="2" class="text-right align-middle">
+			<form name="searchForm" method="post" action="${ctp}/BoardSearch.bo">
+				<select name="search" class="p-1">
+					<option value="title">제목</option>
+					<option value="nickName">작성자</option>
+					<option value="content">내용</option>
+				</select>
+				<input type="text" name="searchString" id="searchString" class="p-1" />
+				<input type="button" value="검색" onclick="searchCheck()" class="btn btn-secondary m-0" />
+				<input type="hidden" name="pag" value="${pag}" />
+				<input type="hidden" name="pagSize" value="${pagSize}" />
+			</form>
+  		</td>
+  	</tr>
     <tr>
-      <td><a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">글쓰기</a></td>
+      <td><a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">등록</a></td>
       <td class="text-right">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
@@ -40,19 +66,24 @@
   </table>
   <table class="table table-hover text-center">
     <tr class="table-dark text-dark">
-      <th>글번호</th>
-      <th>글제목</th>
-      <th>글쓴이</th>
-      <th>글쓴날짜</th>
+      <th>번호</th>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>등록일</th>
       <th>조회수</th>
       <th>좋아요</th>
     </tr>
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
-        <td>${vo.idx}</td>
+        <td>${curScrStartNo}</td>
         <td>
-          <a href="${ctp}/BoardContent.bo?idx=${vo.idx}">${vo.title}</a>
+        <c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
+          <a href="${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
           <c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
+        </c:if>
+        <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
+        	${vo.title}
+        </c:if>
         </td>
         <td>${vo.nickName}</td>
         <td>
@@ -66,13 +97,14 @@
         <td>${vo.readNum}</td>
         <td>${vo.good}</td>
       </tr>
+      <c:set var="curScrStartNo" value="${curScrStartNo - 1}"></c:set>
     </c:forEach>
     <tr><td colspan="6" class="m-0 p-0"></td></tr>
   </table>
   <br/>
   <!-- 블록 페이징 처리 -->
   <div class="text-center">
-	  <ul class="pagination justify-content-center">
+	  <ul class="pagination justify-content-center pagination-sm">
 	    <c:if test="${pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=1">첫페이지</a></li></c:if>
 	    <c:if test="${curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${(curBlock-1)*blockSize + 1}">이전블록</a></li></c:if>
 	    <c:forEach var="i" begin="${curBlock*blockSize + 1}" end="${curBlock*blockSize + blockSize}" varStatus="st">
@@ -83,6 +115,19 @@
 	    <c:if test="${pag < totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${totPage}">마지막페이지</a></li></c:if>
 	  </ul>
   </div>
+  
+  <!-- 검색 처리 -->
+  <%-- <div class="container text-center">
+    <form name="searchForm" method="post" action="${ctp}/BoardSearch.bo">
+      <select name="search">
+        <option>글제목</option>
+        <option>글쓴이</option>
+        <option>글내용</option>
+      </select>
+      <input type="text" name="searchString" id="searchString"/>
+      <input type="button" value="검색" onclick="searchCheck()" class="btn btn-secondary btn-sm"/>
+    </form>
+  </div> --%>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp" />

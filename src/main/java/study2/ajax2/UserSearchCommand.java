@@ -1,4 +1,4 @@
-package study2;
+package study2.ajax2;
 
 import java.io.IOException;
 
@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import study2.ajax2.UserDAO;
+import study2.StudyInterface;
 
-public class UserDeleteCommand implements StudyInterface {
+public class UserSearchCommand implements StudyInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -16,9 +16,15 @@ public class UserDeleteCommand implements StudyInterface {
 		
 		UserDAO dao = new UserDAO();
 		
-		String res = dao.setUserDelete(idx);
+		UserVO vo = dao.getIdxSearch(idx);
 		
-		response.getWriter().write(res);
+		String str = "";
+		if(vo.getMid() == null) {
+			str += "찾는 자료가 없습니다.";
+		}
+		else {
+			str += idx + "/" + vo.getMid() + "/" + vo.getName() + "/" + vo.getAge() + "/" + vo.getAddress();
+		}
+		response.getWriter().write(str);
 	}
-
 }

@@ -44,6 +44,7 @@
     	}
     	
     	let query = {
+    			idx     : idx,
     			mid     : mid,
     			name    : name,
     			age     : age,
@@ -145,17 +146,17 @@
     	}
     	
     	let query = {
+    			idx     : idx,
     			mid     : mid,
     			name    : name,
     			age     : age,
     			address : address
     	}
     	
-    	
     	$.ajax({
     		type : "post",
     		url  : "${ctp}/UserUpdate.st",
-    		data  : {mid: mid},
+    		data  : query,
     		success:function(res) {
     			if(res == "1") {
     				alert("수정이 완료되었습니다.");

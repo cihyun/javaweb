@@ -13,6 +13,8 @@ public class BoardGoodCheckCommand implements BoardInterface {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int idx = request.getParameter("idx")==null? 0 : Integer.parseInt(request.getParameter("idx"));
+		int pag = request.getParameter("pag")==null ? 0 : Integer.parseInt(request.getParameter("pag"));
+		int pageSize = request.getParameter("pageSize")==null ? 0 : Integer.parseInt(request.getParameter("pageSize"));
 		
 		BoardDAO dao = new BoardDAO();
 		
@@ -28,12 +30,24 @@ public class BoardGoodCheckCommand implements BoardInterface {
 		if(!goodIdx.contains(imsiGoodIdx)) {
 			dao.setGoodUpadate(idx);
 			goodIdx.add(imsiGoodIdx);
+			
+			request.setAttribute("msg", "좋아요!");
+		}
+		// 좋아요 감소 설정
+		else {
+			dao.setGoodDowndate(idx);
+			goodIdx.remove(imsiGoodIdx);
+			
+			request.setAttribute("msg", "좋아요 해제!");
 		}
 		
 		session.setAttribute("sGoodIdx", goodIdx);
 		
 		BoardVO vo = dao.getBoardContent(idx);
 		request.setAttribute("vo", vo);
+
+		request.setAttribute("url", request.getContextPath()+"/BoardContent.bo?idx="+idx+"&pag="+pag+"&pageSize="+pageSize);
+		
 	}
 
 }
