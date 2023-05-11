@@ -38,12 +38,12 @@
   	<tr>
   		<td colspan="2" class="text-right align-middle">
 			<form name="searchForm" method="post" action="${ctp}/BoardSearch.bo">
-				<select name="search" class="p-1">
+				<select name="search" class="p-1 col-1">
 					<option value="title">제목</option>
 					<option value="nickName">작성자</option>
 					<option value="content">내용</option>
 				</select>
-				<input type="text" name="searchString" id="searchString" class="p-1" />
+				<input type="text" name="searchString" id="searchString" class="p-1 col-3" />
 				<input type="button" value="검색" onclick="searchCheck()" class="btn btn-secondary m-0" />
 				<input type="hidden" name="pag" value="${pag}" />
 				<input type="hidden" name="pagSize" value="${pagSize}" />

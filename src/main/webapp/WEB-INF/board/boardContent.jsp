@@ -73,7 +73,31 @@
     			alert("전송 오류!!!");
     		}
     	});
-     }
+    }
+    // 댓글 삭제 처리
+    function replyDelete(idx) {
+    	let ans = confirm("선택한 댓글을 삭제하시겠습니까?");
+      if(!ans) return false;
+      
+      $.ajax({
+        type : 'post',
+        url : '${ctp}/BoardReplyDelete.bo',
+        data : {replyIdx : idx},
+        success : function(res) {
+          if(res == '1') {
+           alert('댓글이 삭제되었습니다.');
+           location.reload();
+          }
+          else {
+           alert('댓글이 삭제되지 않았습니다.');
+          }
+        },
+        error : function() {
+          alert('전송실패~~');
+        }
+      });
+    }
+    
 </script>
 </head>
 <body>
@@ -89,6 +113,10 @@
 			<col width="15%" />
 			<col width="20%" />
 		</colgroup>
+		<tr>
+			<th>번호</th>
+			<td colspan="5">${vo.idx}</td>
+		</tr>
 		<tr>
 			<th>작성자</th>
 			<td>${vo.nickName}</td>
@@ -177,7 +205,7 @@
 				<textarea rows="2" name="content" id="content" placeholder="댓글 내용을 입력하세요" class="form-control"></textarea>
 				</td>
 				<td>
-					작성자 : ${sNickName}
+					작성자 : <font color="blue"><b>${sNickName}</b></font>
 					<input type="button" value="등록" onclick="replyCheck()" class="btn btn-info btn-sm form-control mt-2"/>
 				</td>
 			</tr>
@@ -190,23 +218,26 @@
 			<col width="*" />
 			<col width="13%" />
 			<col width="13%" />
+			<col width="7%" />
 		</colgroup>
 		<tr>
 			<th>작성자</th>
 			<th>내용</th>
 			<th>등록일</th>
 			<th>IP</th>
+			<th>비고</th>
 		</tr>
 		<c:forEach var="replyVo" items="${replyVos}" varStatus="st">
-        <tr>
-          <td class="text-center">${replyVo.nickName}
+        <tr class="text-center">
+          <td>${replyVo.nickName}</td>
+          <td class="text-left">${fn:replace(replyVo.content, newLine, "<br/>")}</td>
+          <td>${fn:substring(replyVo.wDate,0,10)}</td>
+          <td>${replyVo.hostIp}</td>
+          <td>
             <c:if test="${sMid == replyVo.mid || sLevel == 0}">
-              (<a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제"><b>x</b></a>)
+            	<a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제" class="btn btn-danger btn-sm"><b>삭제</b></a>
             </c:if>
           </td>
-          <td>${fn:replace(replyVo.content, newLine, "<br/>")}</td>
-          <td class="text-center">${fn:substring(replyVo.wDate,0,10)}</td>
-          <td class="text-center">${replyVo.hostIp}</td>
         </tr>
       </c:forEach>
 	</table>

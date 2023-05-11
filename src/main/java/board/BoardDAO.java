@@ -23,9 +23,12 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getBoardList(int startIndexNo, int pageSize) {
 		ArrayList<BoardVO> vos = new ArrayList<>();
 		try {
-			// sql = "select * from board order by idx desc limit ?,?";
-			sql = "select *,datediff(wDate, now()) as day_diff,timestampdiff(hour, wDate, now()) as hour_diff from"
-					+ " board order by idx desc limit ?,?";
+// 			sql = "select * from board order by idx desc limit ?,?";
+//			sql = "select *,datediff(wDate, now()) as day_diff,timestampdiff(hour, wDate, now()) as hour_diff from"
+//					+ " board order by idx desc limit ?,?";
+			sql = "select * ,datediff(wDate, now()) as day_diff,timestampdiff(hour, wDate, now()) as hour_diff, "
+					+ "(select count(*) from boardReply where boardIdx=b.idx) as replyCount "
+					+ "from board b order by idx desc limit ?,?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startIndexNo);
 			pstmt.setInt(2, pageSize);
@@ -45,6 +48,7 @@ public class BoardDAO {
 				vo.setOpenSw(rs.getString("openSw"));
 				vo.setwDate(rs.getString("wDate"));
 				vo.setGood(rs.getInt("good"));
+				vo.setReplyCnt(rs.getInt("replyCnt"));
 				
 				vo.setHour_diff(rs.getInt("hour_diff"));
 				vo.setDay_diff(rs.getInt("day_diff"));
@@ -320,6 +324,22 @@ public class BoardDAO {
 			getConn.rsClose();
 		}
 		return replyVos;
+	}
+
+	public String setReplyDeleteOk(int replyIdx) {
+		String res = "0";
+		try {
+	      sql = "delete from boardReply where idx=?";
+	      pstmt = conn.prepareStatement(sql);
+	      pstmt.setInt(1, replyIdx);
+	      pstmt.executeUpdate();
+	      res = "1"; 
+	    } catch (SQLException e) {
+	       System.out.println("SQL 오류 : " + e.getMessage());
+	    } finally {
+	       getConn.pstmtClose();
+	    }
+		return res;
 	}
 	
 }

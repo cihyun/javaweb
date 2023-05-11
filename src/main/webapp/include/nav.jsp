@@ -51,11 +51,11 @@
 	      </li>   
 	      <li>
 			  <div class="dropdown">
-			    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Information</button>
+			    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Mypage</button>
 			    <div class="dropdown-menu">
 			      <a class="dropdown-item" href="${ctp}/MemberMain.mem">마이페이지</a>
 			      <a class="dropdown-item" href="#">회원정보수정</a>
-			      <a class="dropdown-item" href="#">회원리스트</a>
+			      <a class="dropdown-item" href="${ctp}/MemberList.mem">회원리스트</a>
 			      <a class="dropdown-item" href="#">회원탈퇴</a>
 			    </div>
 			  </div>

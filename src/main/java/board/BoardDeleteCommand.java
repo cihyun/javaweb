@@ -1,6 +1,7 @@
 package board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,14 @@ public class BoardDeleteCommand implements BoardInterface {
 				
 				BoardDAO dao = new BoardDAO();
 				
+				// 현재글의 댓글이 있는지 확인 후 처리한다.
+				ArrayList<BoardReplyVO> vos = dao.getBoardReply(idx);
+				if(vos.size()!=0) {
+					request.setAttribute("msg", "게시물에 댓글이 있습니다.\\n댓글을 먼저 삭제해 주세요.");
+					request.setAttribute("url", request.getContextPath()+"/BoardContent.bo?idx="+idx+"&pag="+pag+"&pageSize="+pageSize);
+					return;
+				}
+				// 현재글의 댓글이 없다면 현재글을 삭제한다.
 				int res = dao.setBoardDelete(idx);
 				
 				if(res == 1) {

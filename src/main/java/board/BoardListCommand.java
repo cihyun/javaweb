@@ -13,7 +13,7 @@ public class BoardListCommand implements BoardInterface {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BoardDAO dao = new BoardDAO();
 		
-		// 페이징처리...
+			// 페이징처리...
 			int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));
 			int pageSize = request.getParameter("pageSize")==null ? 5 : Integer.parseInt(request.getParameter("pageSize"));
 			int totRecCnt = dao.getTotRecCnt();
