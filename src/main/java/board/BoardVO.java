@@ -14,17 +14,16 @@ public class BoardVO {
 	private String wDate;
 	private int good;
 	
-	private int day_diff;   // 날짜 차이 계산 필드(1일 차이)
-	private int hour_diff;  // 시간 차이 계산 필드(24시간)
+	private int day_diff;		// 날짜 차이 계산 필드(1일차이 계산)
+	private int hour_diff;	// 날짜 차이 계산 필드(24시간차이 계산)
 	
-	/** 이전글,다음글을 위한 변수 설정 */
+	// 이전글/다음글을 위한 변수 설정
 	private int preIdx;
 	private int nextIdx;
 	private String preTitle;
 	private String nextTitle;
 	
-	/* 댓글의 개수를 저장하기 위한 필드 */
-	private int replyCount;
+	private int replyCount;		// 댓글의 개수를 저장하기위한필드
 	
 	public int getIdx() {
 		return idx;
@@ -98,17 +97,17 @@ public class BoardVO {
 	public void setGood(int good) {
 		this.good = good;
 	}
-	public int getDay_diff() {
-		return day_diff;
-	}
-	public void setDay_diff(int day_diff) {
-		this.day_diff = day_diff;
-	}
 	public int getHour_diff() {
 		return hour_diff;
 	}
 	public void setHour_diff(int hour_diff) {
 		this.hour_diff = hour_diff;
+	}
+	public int getDay_diff() {
+		return day_diff;
+	}
+	public void setDay_diff(int day_diff) {
+		this.day_diff = day_diff;
 	}
 	public int getPreIdx() {
 		return preIdx;
@@ -134,20 +133,18 @@ public class BoardVO {
 	public void setNextTitle(String nextTitle) {
 		this.nextTitle = nextTitle;
 	}
-	public int getReplyCnt() {
+	public int getreplyCount() {
 		return replyCount;
 	}
-	public void setReplyCnt(int replyCnt) {
-		this.replyCount = replyCnt;
+	public void setreplyCount(int replyCount) {
+		this.replyCount = replyCount;
 	}
 	@Override
 	public String toString() {
-		return "BoardVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", title=" + title + ", email="
-				+ email + ", homePage=" + homePage + ", content=" + content + ", readNum=" + readNum + ", hostIp="
-				+ hostIp + ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", day_diff=" + day_diff
-				+ ", hour_diff=" + hour_diff + ", preIdx=" + preIdx + ", nextIdx=" + nextIdx + ", preTitle=" + preTitle
-				+ ", nextTitle=" + nextTitle + ", replyCnt=" + replyCount + "]";
+		return "BoardVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", title=" + title + ", email=" + email
+				+ ", homePage=" + homePage + ", content=" + content + ", readNum=" + readNum + ", hostIp=" + hostIp
+				+ ", openSw=" + openSw + ", wDate=" + wDate + ", good=" + good + ", day_diff=" + day_diff + ", hour_diff="
+				+ hour_diff + ", preIdx=" + preIdx + ", nextIdx=" + nextIdx + ", preTitle=" + preTitle + ", nextTitle="
+				+ nextTitle + ", replyCount=" + replyCount + "]";
 	}
-	
-	
 }

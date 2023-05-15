@@ -32,7 +32,6 @@ public class BoardSearchCommand implements BoardInterface {
 		request.setAttribute("searchCount", vos.size());
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
-		
 	}
 
 }

@@ -19,33 +19,51 @@ th {
 	<jsp:include page="/include/header.jsp" />
 	<div class="container mt-5">
 		<h3>마이페이지</h3>
-		<table class="table table-bordered">
+		<table class="table table-bordered mt-3">
 			<colgroup>
-				<col width="20%" />
-				<col width="80%" />
+				<col width="15%" />
+				<col width="35%" />
+				<col width="15%" />
+				<col width="35%" />
 			</colgroup>
 			<tr>
-				<td colspan="2"><font color="blue">${sNickName} (${sLevel})</font> 님 로그인 중입니다.</td>
+				<td colspan="4"><font color="blue"><b>${sNickName} ( ${sLevel} )</b></font> 님 안녕하세요!</td>
 			</tr>
 			<tr>
 				<th>누적포인트</th>
-				<td>${point}</td>
-			</tr>
-			<tr>
-				<th>총 방문횟수</th>
-				<td>${visitCnt}</td>
+				<td colspan="3">${point}</td>
 			</tr>
 			<tr>
 				<th>오늘 방문횟수</th>
 				<td>${todayCnt}</td>
+				<th>총 방문횟수</th>
+				<td>${visitCnt}</td>
 			</tr>
 			<tr>
-				<th>방명록 등록 횟수</th>
-				<td></td>
+				<th>프로필사진</th>
+				<td colspan="3"><img src="${ctp}/images/member/${photo}" width="200px" /></td>
+			</tr>
+		</table>
+		<h3 class="mt-4">활동내역</h3>
+		<table class="table table-bordered">
+			<colgroup>
+				<col width="15%" />
+				<col width="85%" />
+			</colgroup>
+			<tr>
+				<th>방명록 등록</th>
+				<td>${guestCnt}</td>
 			</tr>
 			<tr>
-				<th>회원사진</th>
-				<td><img src="${ctp}/images/member/${photo}" width="200px" /></td>
+				<th>게시판 등록</th>
+				<td>
+				<c:if test="${boardCnt == 0}">${boardCnt}</c:if>
+	            <c:if test="${boardCnt != 0}"><a href="${ctp}/BoardSearchMember.bo">${boardCnt}</a></c:if>
+				</td>
+			</tr>
+			<tr>
+				<th>자료실 등록</th>
+				<td>${pdsCnt}</td>
 			</tr>
 		</table>
 	</div>
