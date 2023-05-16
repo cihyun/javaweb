@@ -29,7 +29,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="${pageContext.request.contextPath}/BoardList.bo">Board</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="#">PDS</a></li>
+				<li class="nav-item"><a class="nav-link" href="${ctp}/PdsList.pds">PDS</a></li>
 				<li>
 					<div class="dropdown">
 						<button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study1</button>

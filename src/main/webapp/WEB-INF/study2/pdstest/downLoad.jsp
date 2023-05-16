@@ -14,7 +14,7 @@
 	
 	// 다운로드는 비동기식으로 처리 불가
 	function javaDownLoad(file) {
-		$.ajax{(
+		$.ajax({
 			type    : "post",
 			url     : "${ctp}/FileDownLoad.st",
 			data    : {file : file},
@@ -24,31 +24,31 @@
 			error   : function() {
 				alert("전송오류!");
 			}
-		)};
+		});
 	}
 	// 업로드는 비동기식으로 처리
 	function fileDelete(file) {
-		let ans = confirm("선택한 파일을 삭제하시겠습니까?");
-		if(!ans) return false;
-		
-		$.ajax({
-			type    : "post",
-			url     : "${ctp}/FileDelete.st",
-			data    : {file : file},
-			success : function() {
-				if(res == "1") {
-					alert("파일이 삭제되었습니다.");
-					location.reload();
-				} else {
-					alert("파일 삭제 실패");
-				}
-			},
-			error   : function() {
-				alert("전송 실패!");
-			}
-		});
-		
-	}
+    	let ans = confirm("선택한 파일을 삭제하시겠습니까");
+    	if(!ans) return false;
+    	
+    	$.ajax({
+    		type : "post",
+    		url  : "${ctp}/FileDelete.st",
+    		data : {file : file},
+    		success:function(res) {
+    			if(res == "1") {
+    				alert("파일이 삭제되었습니다.");
+    				location.reload();
+    			}
+    			else {
+    				alert("파일 삭제 실패~~");
+    			}
+    		},
+    		error : function() {
+    			alert("전송 실패~~");
+    		}
+    	});
+    }
 </script>
 </head>
 <body>
@@ -87,8 +87,7 @@
 				<td>
 					<!-- <input type="button" value="자바다운로드" onclick="javaDownLoad('${file}}')" class="btn btn-sm btn-warning" /> -->
 					<input type="button" value="다운로드" onclick="location.href='${ctp}/FileDownLoad.st?file=${file}';" class="btn btn-sm btn-warning" />
-					<input type="button" value="삭제" onclick="fileDelete('${file}')" class="btn btn-sm btn-danger" />
-			
+					<a onclick="fileDelete('${file}')" class="btn btn-sm btn-danger">삭제</a>
 				</td>
 			</tr>
 			<!-- <tr><td colspan="4" class="p-0 m-0"></td></tr> -->
