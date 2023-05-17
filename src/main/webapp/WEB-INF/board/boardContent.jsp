@@ -32,8 +32,50 @@
 	
 	// 좋아요
     function goodCheck() {
-        location.href = "${ctp}/BoardGoodCheck.bo?idx=${vo.idx}";
-        
+		
+        /* location.href = "${ctp}/BoardGoodCheck.bo?idx=${vo.idx}"; */
+    	$.ajax({
+        type: "post",
+        url: "${ctp}/BoardGoodCheck.bo?idx=${vo.idx}",
+        data: { idx: ${vo.idx} },
+        success: function(res) {
+            if (res === "1") {
+                document.getElementById("goodImg").style.display = "inline";
+                document.getElementById("noGoodImg").style.display = "none";
+                alert("좋아요 선택!");
+            } else if (res === "0") {
+                document.getElementById("goodImg").style.display = "none";
+                document.getElementById("noGoodImg").style.display = "inline";
+                alert("좋아요 해제!");
+            } else {
+                location.reload();
+            }
+        },
+        error: function() {
+            alert("전송 오류!");
+        }
+    });
+/*     	$.ajax({
+            type: "post",
+            url: "${ctp}/BoardGoodCheck.bo?idx=${vo.idx}",
+            data: { idx: ${vo.idx} },
+            success: function(res) {
+                if (res == "1") {
+                    $("#goodImg").show();
+                    $("#noGoodImg").hide();
+                    alert("좋아요 선택!");
+                } else if (res == "0") {
+                    $("#noGoodImg").show();
+                    $("#goodImg").hide();
+                    alert("좋아요 해제!");
+                } else {
+                	location.reload();
+                }
+            },
+            error: function() {
+                alert("전송 오류!");
+            }
+        }); */
     }
     // 게시물 삭제
     function boardDelete() {
@@ -149,9 +191,10 @@
 			<th>좋아요</th>
 			<td colspan="5">
 				<b>${vo.good}</b>
-				<a href="#" id="goodImg" onclick="goodCheck()">
-        			<img src="${ctp}/images/good2.png" width="20px" class="ml-1" />
-        		</a>
+				<a href="#" onclick="goodCheck()">
+				    <img id="goodImg" src="${ctp}/images/good2.png" width="20px" class="ml-1" style="display: inline;" />
+				    <img id="noGoodImg" src="${ctp}/images/good1.png" width="20px" class="ml-1" style="display: none;" />
+				</a>
 			</td>
 		</tr>
 	</table>

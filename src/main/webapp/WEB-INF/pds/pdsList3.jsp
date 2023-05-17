@@ -69,33 +69,7 @@
     			}
     		},
     		error : function() {
-    			alert("전송 실패!");
-    		}
-    	});
-    }
-    // 파일 삭제처리(ajax) - Modal
-    function pdsDeleteCheck2(idx, fSName) {
-    	let query = {
-    			idx : idx,
-    			fSName : fSName,
-    			pwd2 : pwd2
-    	}
-    	
-    	$.ajax({
-    		type : "get",
-    		url  : "${ctp}/PdsDeleteCheck.pds",
-    		data : query,
-    		success:function(res) {
-    			if(res == "1") {
-    				alert('삭제되었습니다.');
-    				location.reload();
-    			}
-    			else {
-    				alert("삭제 실패!");
-    			}
-    		},
-    		error : function() {
-    			alert("전송 실패!");
+    			alert("전송 실패~");
     		}
     	});
     }
@@ -163,47 +137,13 @@
 							<a href="${ctp}/images/pds/${fSNames[st.index]}" download="${fName}" onclick="downNumCheck(${vo.idx})">${fName}</a>
 							<br />
 						</c:forEach>
-						(<fmt:formatNumber value="${vo.fSize/1024}" pattern="#,##0" />KB)
+						(<fmt:formatNumber value="${vo.fSize/1024}" pattern="#,##0" />KByte)
 					</td>
 					<td>${vo.downNum}</td>
 					<td>
 						<a href="${ctp}/PdsTotalDown.pds?idx=${vo.idx}" class="badge badge-info">전체다운</a>
 						<a href="javascript:pdsDeleteCheck('${vo.idx}','${vo.fSName}')" class="badge badge-danger">삭제1</a>
 						<br />
-						
-						<!-- Modal -->
-						<!-- Button to Open the Modal -->
-						  <button type="button" class="badge badge-dark" data-toggle="modal" data-target="#myModal">
-						    삭제2
-						  </button>
-						
-						  <!-- The Modal -->
-						  <div class="modal" id="myModal">
-						    <div class="modal-dialog">
-						      <div class="modal-content">
-						      
-						        <!-- Modal Header -->
-						        <div class="modal-header">
-						          <h4 class="modal-title">비밀번호 입력</h4>
-						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        </div>
-						        
-						        <!-- Modal body -->
-						        <div class="modal-body">
-						          <input type="password" id="pwd2" value="" placeholder="비밀번호를 입력하세요." class="form-control">
-						        </div>
-						        
-						        <!-- Modal footer -->
-						        <div class="modal-footer">
-						          <button type="button" class="btn btn-primary" onclick="pdsDeleteCheck2('${vo.idx}','${vo.fSName}')">확인</button>
-						          <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-						        </div>
-						        
-						      </div>
-						    </div>
-						  </div>
-						 <!-- Modal -->
-						 
 						<a href="javascript:pdsDeleteCheck('${vo.idx}','${vo.fSName}')" class="badge badge-warning">삭제2</a></td>
 				</tr>
 				<c:set var="curScrStartNo" value="${curScrStartNo - 1}"></c:set>

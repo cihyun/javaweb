@@ -24,11 +24,13 @@ public class PdsDAO {
 		ArrayList<PdsVO> vos = new ArrayList<>();
 		try {
 			if(part.equals("전체")) {
-				sql = "select * from pds order by idx desc";
-				pstmt = conn.prepareStatement(sql);
+				sql = "select * from pds order by idx desc limit ?,?";
+			    pstmt = conn.prepareStatement(sql);
+			    pstmt.setInt(1, startIndexNo);
+                pstmt.setInt(2, pageSize);
 			}
 			else {
-				sql = "select * from pds where part = ? order by idx desc";
+				sql = "select * from pds where part = ? order by idx desc limit ?,?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, part);
 				pstmt.setInt(2, startIndexNo);
@@ -152,12 +154,19 @@ public class PdsDAO {
 			}
 			return res;
 		}
-		// 전체 레코드 건수 구하기(페이징 처리)
-		public int getTotRecCnt() {
+		// 전체 레코드 건수 구하기
+		public int getTotRecCnt(String part) {
 			int totRecCnt = 0;
 			try {
-				sql = "select count(idx) as cnt from board";
-				pstmt = conn.prepareStatement(sql);
+				if(part.equals("전체")) {
+	                sql="select count(idx) as cnt from pds";
+	                pstmt = conn.prepareStatement(sql);
+	            } else {
+	            	sql="select count(idx) as cnt from pds where part=?";
+	                pstmt = conn.prepareStatement(sql);
+	                pstmt.setString(1, part);
+	            }
+				
 				rs = pstmt.executeQuery();
 				rs.next();
 				totRecCnt = rs.getInt("cnt");

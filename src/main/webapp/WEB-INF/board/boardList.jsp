@@ -12,15 +12,17 @@
   <script>
     'use strict';
     
+	if(${pag} > ${totPage}) location.href="${ctp}/BoardList.bo?pag=${totPage}&pageSize=${pageSize}";
+    
     function pageCheck() {
     	let pageSize = document.getElementById("pageSize").value;
     	location.href = "${ctp}/BoardList.bo?pag=${pag}&pageSize="+pageSize;
     }
     function searchCheck() {
-		let searchString = $("#searchString").val();
+    	let searchString = $("#searchString").val();
     	
     	if(searchString.trim() == "") {
-    		alert("찾고자하는 검색어를 입력하세요!");
+    		alert("검색어를 입력하세요!");
     		searchForm.searchString.focus();
     	}
     	else {
@@ -51,7 +53,11 @@
   		</td>
   	</tr>
     <tr>
-      <td><a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">등록</a></td>
+      <td>
+	      <c:if test="${sLevel != 1}">
+	      	<a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">등록</a>
+	      </c:if>
+      </td>
       <td class="text-right">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
@@ -84,6 +90,7 @@
         <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
         	${vo.title}
         </c:if>
+        <c:if test="${vo.replyCount != 0}">(${vo.replyCount})</c:if>
         </td>
         <td>${vo.nickName}</td>
         <td>
@@ -97,13 +104,13 @@
         <td>${vo.readNum}</td>
         <td>${vo.good}</td>
       </tr>
-      <c:set var="curScrStartNo" value="${curScrStartNo - 1}"></c:set>
+      <c:set var="curScrStartNo" value="${curScrStartNo - 1}" />
     </c:forEach>
     <tr><td colspan="6" class="m-0 p-0"></td></tr>
   </table>
   <br/>
   <!-- 블록 페이징 처리 -->
-  <div class="text-center">
+  <div class="text-center m-4">
 	  <ul class="pagination justify-content-center pagination-sm">
 	    <c:if test="${pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=1">첫페이지</a></li></c:if>
 	    <c:if test="${curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pageSize=${pageSize}&pag=${(curBlock-1)*blockSize + 1}">이전블록</a></li></c:if>
