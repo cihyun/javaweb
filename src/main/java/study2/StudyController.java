@@ -15,8 +15,12 @@ import study2.ajax2.UserInputCommand;
 import study2.ajax2.UserListCommand;
 import study2.ajax2.UserSearchCommand;
 import study2.ajax2.UserUpdateCommand;
-import study2.carlendar.Calendar2Command;
-import study2.carlendar.CalendarCommand;
+import study2.api.crime.DeleteCrimeDataCommand;
+import study2.api.crime.ListCrimeDataCommand;
+import study2.api.crime.PoliceCrimeDataSearchCommand;
+import study2.api.crime.SaveCrimeDataCommand;
+import study2.calendar.Calendar2Command;
+import study2.calendar.CalendarCommand;
 import study2.modal.ModalTest2Command;
 import study2.password.PassOk1Command;
 import study2.password.PassOk2Commond;
@@ -160,6 +164,32 @@ public class StudyController extends HttpServlet {
 			command = new Calendar2Command();
 			command.execute(request, response);
 			viewPage += "/calendar/calendar2.jsp";
+		}
+		else if(com.equals("/ApiTest")){
+			viewPage += "/api/apiTest.jsp";
+		}
+		else if(com.equals("/CrimeApi")){
+			viewPage += "/api/crime/crimeApi.jsp";
+		}
+		else if(com.equals("/SaveCrimeData")){
+			command = new SaveCrimeDataCommand();
+			command.execute(request, response);
+			return;
+		}
+		else if(com.equals("/DeleteCrimeData")){
+			command = new DeleteCrimeDataCommand();
+			command.execute(request, response);
+			return;
+		}
+		else if(com.equals("/ListCrimeData")){
+			command = new ListCrimeDataCommand();
+			command.execute(request, response);
+			viewPage += "/api/crime/crimeApi.jsp";
+		}
+		else if(com.equals("/PoliceCrimeDataSearch")){
+			command = new PoliceCrimeDataSearchCommand();
+			command.execute(request, response);
+			viewPage += "/api/crime/crimeApi.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

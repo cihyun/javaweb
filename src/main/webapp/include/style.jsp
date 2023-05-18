@@ -4,16 +4,16 @@
 
 @font-face {
     font-family: 'SCoreDream';
-    font-weight: 300; 
+    font-weight: 400; 
     font-style: normal; 
     src: url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff2) format('woff2'),
          url(https://cdn.jsdelivr.net/gh/webfontworld/SCoreDream/SCoreDream3.woff) format('woff');
     font-display: swap;
 }
 
-a:link { color: #333; text-decoration: none;}
+/* a:link { color: #333; text-decoration: none;}
 a:visited { color: black; text-decoration: none;}
-a:hover { font-weight: bold; color: sky; text-decoration: none;}
+a:hover { font-weight: bold; color: sky; text-decoration: none;} */
 
 body {
     font-family: 'SCoreDream';
@@ -62,14 +62,19 @@ th {
 	height: 100px;
 }
 .today {
-	background-color: #e0ffff;
+	background-color: #eee;
 	font-weight: bold;
 }
 .su {color: red}
+.su > a:link {color: red}
+.su > a:visited {color: red}
 .sa {color: blue}
+.sa > a:link {color: blue}
+.sa > a:visited {color: blue}
 .preNext {
-	color: #999;
-	font-size: 12px;
+	color:#ccc;
+	font-size:0.6em;
+	text-align:left;
 }
 /*반응형 테이블*/
 @media only screen and (max-width: 800px) {
